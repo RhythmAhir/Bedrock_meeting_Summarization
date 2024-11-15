@@ -1,10 +1,14 @@
 # Project Report: Meeting Summary Generation System with AWS Lambda, Bedrock, API Gateway, and Amazon S3
 
+---
+
 ## 1. **Introduction**
 
-This project involves creating a serverless system to generate meeting summaries from email content. Using **AWS Lambda** as the processing engine, the system integrates with **AWS Bedrock** to utilize the foundational model **Anthropic Claude-v2** for summarization. The system is accessible through **API Gateway**, allowing users to submit requests via **Postman**, and the generated summary is saved in an **S3 bucket** for easy access and storage.
+This project involves building a serverless system that automatically generates summaries from large documents, such as meeting notes, using **AWS Lambda** and **AWS Bedrock**. For this particular implementation, we used the **"Anthropic Claude-v2"** model from Bedrock to summarize meeting content. The system is designed to take in email content containing meeting notes, extract the relevant text, generate a summary, and store the result in an **S3 bucket**. This setup is accessed via **API Gateway**, allowing users to easily submit documents for summarization.
 
----
+As a test, we used a sample document: the **US Chemical Safety Board meeting minutes from January 20, 2016**, which is 27 pages long. This document was uploaded into the system for summarization, showcasing the system’s ability to handle large amounts of text and produce concise summaries.
+
+------
 
 ## 2. **Creating the AWS Lambda Function**
 
@@ -56,15 +60,16 @@ An S3 bucket named `bedrock-meeting-summarization` was created to store the outp
 
 ---
 
+
 ## 5. **Testing the API with Postman**
 
-To verify the setup, we tested the API using **Postman**. A POST request was sent with a file containing the meeting notes to be summarized.
+To test the system, we uploaded an entire **27-page US Chemical Safety Board meeting document from January 20, 2016**. This document, containing meeting notes, was collected as a sample to demonstrate the summarization capabilities of the Lambda function.
 
 1. **Postman Request**:
-   - The request includes a JSON payload with the base64-encoded email content.
+   - We submitted the document as a base64-encoded file through a **POST** request to the **API Gateway**. The file was sent with a JSON payload, specifying the key `meeting-summary-01` and containing the content to be summarized.
    
 2. **API Response**:
-   - A successful response from the API confirmed that the Lambda function executed as expected, generating the summary and saving it in S3.
+   - The Lambda function processed the document and generated a summary when sending the request. The system returned a successful response, confirming the completion of the summary generation. The summarized content was then stored in the **S3 bucket** for future access.
 
 **Screenshot of the Postman request and response confirming successful execution**:  
 ![Alt text](<https://github.com/RhythmAhir/Bedrock_meeting_Summarization/blob/main/Screenshot/5.%20POSTMAN%20POST.png>)
@@ -82,7 +87,7 @@ After executing the Lambda function, the generated summary was saved in the S3 b
 
 ## 7. **Viewing the Generated Summary**
 
-Here is an example of the generated summary based on the meeting notes provided in the request. This summary was created using Bedrock's summariBedrock'spabilities and saved in the S3 bucket for future reference.
+Here is an example of the generated summary based on the meeting notes provided in the request. This summary was created using Bedrock's capabilities and saved in the S3 bucket for future reference.
 
 **Screenshot of the generated summary content**:  
 ![Alt text](<https://github.com/RhythmAhir/Bedrock_meeting_Summarization/blob/main/Screenshot/7.%20Output%20Summary.png>)
@@ -91,4 +96,4 @@ Here is an example of the generated summary based on the meeting notes provided 
 
 ## Conclusion
 
-This project successfully demonstrates the integration of **AWS Lambda**, **Bedrock’s "AnthroBedrock'se"v2" model**, **API "ateway**, and **Amazon S3** to build a serverless, automated summarization API. The structured configuration allows users to submit meeting notes as email content, which the system processes to generate saved summaries for easy retrieval. This solution is a scalable foundation for similar text-processing applications, providing a streamlined content summarization and storage approach.
+This project successfully demonstrates the integration of **AWS Lambda**, **Bedrock's "Anthropic Claude-v2"**, **API Gateway**, and **Amazon S3** to build a serverless, automated summarization API. The structured configuration allows users to submit meeting notes as email content, which the system processes to generate saved summaries for easy retrieval. This solution is a scalable foundation for similar text-processing applications, providing a streamlined content summarization and storage approach.
