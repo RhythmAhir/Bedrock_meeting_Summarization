@@ -31,6 +31,7 @@ The AWS Lambda function serves as the core of my summary generation process. It 
 The complete code for this Lambda function can be found in the **"Bedrock_meeting_summary.py"** file.
 
 **Screenshot of the Lambda function code configuration**:  
+
 ![Alt text](<https://github.com/RhythmAhir/Bedrock_meeting_Summarization/blob/main/Screenshot/1.%20Lambda%20Function.png>)
 
 ---
@@ -40,6 +41,7 @@ The complete code for this Lambda function can be found in the **"Bedrock_meetin
 I created an S3 bucket named `bedrock-meeting-summarization` to store the output summaries. Each generated summary is saved with a unique timestamped filename under the `summary-output` folder, allowing for easy tracking and retrieval.
 
 **Screenshot of the S3 bucket configuration**:  
+
 ![Alt text](<https://github.com/RhythmAhir/Bedrock_meeting_Summarization/blob/main/Screenshot/2.%20Meeting_summary%20S3%20Bucket%20Created.png>)
 
 ---
@@ -55,7 +57,9 @@ I configured **API Gateway** to enable external access to the Lambda function, a
    I created a POST route (`/meeting-summary`) in API Gateway, which directs incoming requests to the Lambda function for processing.
 
 **Screenshots of API Gateway integration and route configuration**:  
+
 ![Alt text](<https://github.com/RhythmAhir/Bedrock_meeting_Summarization/blob/main/Screenshot/3.%20Meeting_Summary%20API%20Gateway%20Integration%20with%20Lambda%20Function.png>)
+
 ![Alt text](<https://github.com/RhythmAhir/Bedrock_meeting_Summarization/blob/main/Screenshot/4.%20API%20Gateway%20Route.png>)
 
 ---
@@ -71,6 +75,7 @@ To test the system, I uploaded an entire **27-page US Chemical Safety Board meet
    The Lambda function processed the document and generated a summary. The system returned a successful response, confirming the completion of the summary generation. The summarized content was then stored in the **S3 bucket** for future access.
 
 **Screenshot of the Postman request and response confirming successful execution**:  
+
 ![Alt text](<https://github.com/RhythmAhir/Bedrock_meeting_Summarization/blob/main/Screenshot/5.%20POSTMAN%20POST.png>)
 
 ---
@@ -80,6 +85,7 @@ To test the system, I uploaded an entire **27-page US Chemical Safety Board meet
 After executing the Lambda function, I verified that the generated summary was saved in the S3 bucket `bedrock-meeting-summarization` under the `summary-output` folder. The unique timestamped filename confirmed successful storage.
 
 **Screenshot of the generated summary file in the S3 bucket**:  
+
 ![Alt text](<https://github.com/RhythmAhir/Bedrock_meeting_Summarization/blob/main/Screenshot/6.%20File%20Generated%20In%20S3.png>)
 
 ---
@@ -89,6 +95,7 @@ After executing the Lambda function, I verified that the generated summary was s
 Here is an example of the generated summary based on the meeting notes provided in the request. This summary was created using Bedrock's capabilities and saved in the S3 bucket for future reference.
 
 **Screenshot of the generated summary content**:  
+
 ![Alt text](<https://github.com/RhythmAhir/Bedrock_meeting_Summarization/blob/main/Screenshot/7.%20Output%20Summary.png>)
 
 ---
